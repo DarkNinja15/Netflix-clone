@@ -1,11 +1,71 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
+    PageController pageController = PageController();
+    int selectedIndex;
+    void onTap(int pageValue) {
+      setState(() {
+        selectedIndex = pageValue;
+      });
+      pageController.jumpToPage(pageValue);
+    }
+
     return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Colors.black,
+            leading: Image.asset(
+              'assets/logo.jpg',
+              fit: BoxFit.cover,
+            ),
+            actions: [
+              MaterialButton(
+                onPressed: () {},
+                child: const Text(
+                  'TV Shows',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: const Text(
+                  'Movies',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: const Text(
+                  'My List',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
       backgroundColor: Colors.black,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -61,6 +121,7 @@ class HomePage extends StatelessWidget {
             label: 'More',
           ),
         ],
+        onTap: onTap,
       ),
     );
   }
