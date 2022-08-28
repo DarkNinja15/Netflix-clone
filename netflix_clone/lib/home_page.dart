@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -63,6 +65,70 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ],
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              height: 250,
+              child: Image.asset('assets/naruto.jpg'),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  MaterialButton(
+                    onPressed: () {},
+                    child: Column(
+                      children: const [
+                        Icon(Icons.add, color: Colors.white),
+                        Text(
+                          'My List',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.play_arrow,
+                        color: Colors.black,
+                      ),
+                      label: Text(
+                        'Play',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  MaterialButton(
+                    onPressed: () {},
+                    child: Column(
+                      children: const [
+                        Icon(Icons.info, color: Colors.white),
+                        Text(
+                          'Info',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
