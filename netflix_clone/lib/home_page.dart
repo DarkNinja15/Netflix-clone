@@ -1,6 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +20,9 @@ class _HomePageState extends State<HomePage> {
       });
       pageController.jumpToPage(pageValue);
     }
+
+    final firestore = FirebaseFirestore.instance;
+    CollectionReference collectionReference = firestore.collection('popular');
 
     return Scaffold(
       body: CustomScrollView(
@@ -99,11 +102,11 @@ class _HomePageState extends State<HomePage> {
                         primary: Colors.white,
                       ),
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.play_arrow,
                         color: Colors.black,
                       ),
-                      label: Text(
+                      label: const Text(
                         'Play',
                         style: TextStyle(
                           color: Colors.black,
@@ -132,11 +135,11 @@ class _HomePageState extends State<HomePage> {
           ),
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 400,
+              height: 270,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0, right: 100),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20.0, right: 100),
                     child: Text(
                       'Continue watching for EvilShadow',
                       style: TextStyle(
@@ -162,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Image.network(
                                       'https://cdn.animixplay.to/min/mal/6/73245.jpg'),
                                 ),
-                                LinearProgressIndicator(
+                                const LinearProgressIndicator(
                                   value: 50,
                                 ),
                                 Row(
@@ -171,14 +174,14 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.info,
                                         color: Colors.white,
                                       ),
                                     ),
                                     IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.more_vert,
                                         color: Colors.white,
                                       ),
@@ -201,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Image.network(
                                       'https://cdn.animixplay.to/i/78039ad93f38c6d1a1f752c898e22292.jpg'),
                                 ),
-                                LinearProgressIndicator(
+                                const LinearProgressIndicator(
                                   value: 50,
                                 ),
                                 Row(
@@ -210,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.info,
                                         color: Colors.white,
                                       ),
@@ -229,6 +232,54 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 200,
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8.0),
+                    child: Text(
+                      'Popular on Netflix',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 170,
+                    child: FutureBuilder<QuerySnapshot>(
+                      future: collectionReference.get(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Lottie.asset('assets/animation.json');
+                        } else if (snapshot.hasData) {
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (_, index) {
+                              return SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Image.network(
+                                  snapshot.data!.docs[index]['image']
+                                      .toString(),
+                                ),
+                              );
+                            },
+                          );
+                        }
+                        return Text('hello');
+                      },
                     ),
                   ),
                 ],
