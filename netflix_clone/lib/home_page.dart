@@ -130,6 +130,111 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 400,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0, right: 100),
+                    child: Text(
+                      'Continue watching for EvilShadow',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: SizedBox(
+                            width: 100,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 150,
+                                  width: 150,
+                                  child: Image.network(
+                                      'https://cdn.animixplay.to/min/mal/6/73245.jpg'),
+                                ),
+                                LinearProgressIndicator(
+                                  value: 50,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.info,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.more_vert,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: SizedBox(
+                            width: 100,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 150,
+                                  width: 150,
+                                  child: Image.network(
+                                      'https://cdn.animixplay.to/i/78039ad93f38c6d1a1f752c898e22292.jpg'),
+                                ),
+                                LinearProgressIndicator(
+                                  value: 50,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.info,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.more_vert,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
       backgroundColor: Colors.black,
