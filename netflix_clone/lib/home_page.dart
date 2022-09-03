@@ -244,6 +244,75 @@ class _HomePageState extends State<HomePage> {
             heading: 'Animated',
             category: 'animated',
           ),
+          const Slivers(
+            heading: 'Netflix Orginals',
+            category: 'originals',
+          ),
+          SliverToBoxAdapter(
+            child: FittedBox(
+              alignment: Alignment.centerLeft,
+              // height: 25,
+              child: Column(
+                children: const [
+                  Text(
+                    'Available Now: Season 2',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              height: 190,
+              child: Image.network(
+                  'https://www.whats-on-netflix.com/wp-content/uploads/2021/10/shadow-and-bone-season-2-2022.jpg'),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                    ),
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.play_arrow_rounded,
+                      color: Colors.black,
+                    ),
+                    label: const Text(
+                      'Play',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  child: Column(
+                    children: const [
+                      Icon(Icons.add, color: Colors.white),
+                      Text(
+                        'My List',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
       backgroundColor: Colors.black,
