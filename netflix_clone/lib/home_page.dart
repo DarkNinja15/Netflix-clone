@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:netflix_clone/slivers.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,9 +21,6 @@ class _HomePageState extends State<HomePage> {
       });
       pageController.jumpToPage(pageValue);
     }
-
-    final firestore = FirebaseFirestore.instance;
-    CollectionReference collectionReference = firestore.collection('popular');
 
     return Scaffold(
       body: CustomScrollView(
@@ -220,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.more_vert,
                                         color: Colors.white,
                                       ),
@@ -238,53 +236,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 200,
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 8.0),
-                    child: Text(
-                      'Popular on Netflix',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 170,
-                    child: FutureBuilder<QuerySnapshot>(
-                      future: collectionReference.get(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Lottie.asset('assets/animation.json');
-                        } else if (snapshot.hasData) {
-                          return ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (_, index) {
-                              return SizedBox(
-                                height: 100,
-                                width: 100,
-                                child: Image.network(
-                                  snapshot.data!.docs[index]['image']
-                                      .toString(),
-                                ),
-                              );
-                            },
-                          );
-                        }
-                        return Text('hello');
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          const Slivers(
+            heading: 'Popular on Netflix',
+            category: 'popular',
+          ),
+          const Slivers(
+            heading: 'Animated',
+            category: 'animated',
           ),
         ],
       ),
