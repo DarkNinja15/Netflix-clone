@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:netflix_clone/screens/detail.dart';
 
 class Slivers extends StatelessWidget {
   final String heading;
@@ -13,6 +14,16 @@ class Slivers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void routeToDetail(DocumentSnapshot info) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => Detail(
+            info: info,
+          ),
+        ),
+      );
+    }
+
     return SliverToBoxAdapter(
       child: SizedBox(
         height: 200,
@@ -44,7 +55,9 @@ class Slivers extends StatelessWidget {
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (_, index) {
                         return GestureDetector(
-                          onTap: null,
+                          onTap: () {
+                            routeToDetail(snapshot.data!.docs[index]);
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
