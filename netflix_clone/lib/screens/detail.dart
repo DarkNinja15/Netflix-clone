@@ -1,3 +1,7 @@
+// ignore_for_file: sort_child_properties_last
+
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/home_page.dart';
@@ -29,9 +33,166 @@ class Detail extends StatelessWidget {
                       ),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text('data'),
+                        Text(
+                          '${info['match']} match',
+                          style: const TextStyle(
+                            color: Colors.green,
+                          ),
+                        ),
+                        Text(
+                          info['Aired'],
+                          style: TextStyle(
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              info['age'],
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          '${info['episodes']} episodes',
+                          style: TextStyle(
+                            color: Colors.grey.shade500,
+                          ),
+                        )
                       ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Container(
+                        height: 40,
+                        width: double.infinity,
+                        color: Colors.white,
+                        child: TextButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.play_arrow,
+                            color: Colors.black,
+                          ),
+                          label: const Text(
+                            'Play',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Container(
+                        height: 40,
+                        width: double.infinity,
+                        color: Colors.grey.shade500.withOpacity(0.4),
+                        child: TextButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.download,
+                            color: Colors.white,
+                          ),
+                          label: const Text(
+                            'Download',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        info['desc'],
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        info['genres'],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          MaterialButton(
+                            onPressed: null,
+                            child: Column(
+                              children: const [
+                                Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  'My List',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: null,
+                            child: Column(
+                              children: const [
+                                Icon(
+                                  Icons.thumb_up_alt_outlined,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  'Like',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: null,
+                            child: Column(
+                              children: const [
+                                Icon(
+                                  Icons.share,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  'Share',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.grey.shade500,
                     )
                   ],
                 ),
@@ -47,7 +208,7 @@ class Detail extends StatelessWidget {
                 ),
               ),
             ),
-            expandedHeight: 600,
+            expandedHeight: 700,
             leading: IconButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
