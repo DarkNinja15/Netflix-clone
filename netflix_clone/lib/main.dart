@@ -32,7 +32,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PageController pageController = PageController();
 
-  int selectedIndex = 0;
+  late int selectedIndex;
 
   void onTap(int pageValue) {
     setState(() {
