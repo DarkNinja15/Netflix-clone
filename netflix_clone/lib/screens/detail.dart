@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/home_page.dart';
+import 'package:netflix_clone/screens/home_page.dart';
 import 'package:netflix_clone/widgets/video.dart';
 
 class Detail extends StatelessWidget {
