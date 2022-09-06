@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/home_page.dart';
+import 'package:netflix_clone/widgets/video.dart';
 
 class Detail extends StatelessWidget {
   final DocumentSnapshot info;
@@ -76,7 +77,13 @@ class Detail extends StatelessWidget {
                         width: double.infinity,
                         color: Colors.white,
                         child: TextButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => VideoDisplay(),
+                              ),
+                            );
+                          },
                           icon: const Icon(
                             Icons.play_arrow,
                             color: Colors.black,
